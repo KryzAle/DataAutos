@@ -1,0 +1,51 @@
+﻿@model IEnumerable<DataAutos.Models.Auto>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.aut_placa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.aut_modelo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.aut_color)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Persona.per_nombre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.aut_placa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.aut_modelo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.aut_color)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Persona.per_nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.aut_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.aut_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.aut_id })
+        </td>
+    </tr>
+}
+
+</table>

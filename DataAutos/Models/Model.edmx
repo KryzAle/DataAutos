@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DataAutosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Auto">
+          <Key>
+            <PropertyRef Name="aut_id" />
+          </Key>
+          <Property Name="aut_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="per_id" Type="int" />
+          <Property Name="aut_placa" Type="varchar" MaxLength="50" />
+          <Property Name="aut_modelo" Type="varchar" MaxLength="50" />
+          <Property Name="aut_color" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Persona">
+          <Key>
+            <PropertyRef Name="per_id" />
+          </Key>
+          <Property Name="per_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="per_nombre" Type="varchar" MaxLength="50" />
+          <Property Name="per_edad" Type="int" />
+        </EntityType>
+        <Association Name="FK_Auto_Auto">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="0..1" />
+          <End Role="Auto" Type="Self.Auto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="per_id" />
+            </Principal>
+            <Dependent Role="Auto">
+              <PropertyRef Name="per_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DataAutosModelStoreContainer">
+          <EntitySet Name="Auto" EntityType="Self.Auto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Persona" EntityType="Self.Persona" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Auto_Auto" Association="Self.FK_Auto_Auto">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Auto" EntitySet="Auto" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DataAutosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Auto">
+          <Key>
+            <PropertyRef Name="aut_id" />
+          </Key>
+          <Property Name="aut_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="per_id" Type="Int32" />
+          <Property Name="aut_placa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="aut_modelo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="aut_color" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Persona" Relationship="Self.FK_Auto_Auto" FromRole="Auto" ToRole="Persona" />
+        </EntityType>
+        <EntityType Name="Persona">
+          <Key>
+            <PropertyRef Name="per_id" />
+          </Key>
+          <Property Name="per_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="per_nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="per_edad" Type="Int32" />
+          <NavigationProperty Name="Auto" Relationship="Self.FK_Auto_Auto" FromRole="Persona" ToRole="Auto" />
+        </EntityType>
+        <Association Name="FK_Auto_Auto">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="0..1" />
+          <End Role="Auto" Type="Self.Auto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="per_id" />
+            </Principal>
+            <Dependent Role="Auto">
+              <PropertyRef Name="per_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DataAutosEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Auto" EntityType="Self.Auto" />
+          <EntitySet Name="Persona" EntityType="Self.Persona" />
+          <AssociationSet Name="FK_Auto_Auto" Association="Self.FK_Auto_Auto">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Auto" EntitySet="Auto" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DataAutosModelStoreContainer" CdmEntityContainer="DataAutosEntities">
+          <EntitySetMapping Name="Auto">
+            <EntityTypeMapping TypeName="DataAutosModel.Auto">
+              <MappingFragment StoreEntitySet="Auto">
+                <ScalarProperty Name="aut_id" ColumnName="aut_id" />
+                <ScalarProperty Name="per_id" ColumnName="per_id" />
+                <ScalarProperty Name="aut_placa" ColumnName="aut_placa" />
+                <ScalarProperty Name="aut_modelo" ColumnName="aut_modelo" />
+                <ScalarProperty Name="aut_color" ColumnName="aut_color" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Persona">
+            <EntityTypeMapping TypeName="DataAutosModel.Persona">
+              <MappingFragment StoreEntitySet="Persona">
+                <ScalarProperty Name="per_id" ColumnName="per_id" />
+                <ScalarProperty Name="per_nombre" ColumnName="per_nombre" />
+                <ScalarProperty Name="per_edad" ColumnName="per_edad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

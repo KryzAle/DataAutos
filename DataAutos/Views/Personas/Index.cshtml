@@ -1,0 +1,42 @@
+﻿@model IEnumerable<DataAutos.Models.Persona>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.per_nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.per_edad)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.per_nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.per_edad)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.per_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.per_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.per_id })
+        </td>
+		<td>@Ajax.ActionLink("VerAutos","Detalle","Personas",new { id = item.per_id},new AjaxOptions { HttpMethod = "GET",InsertionMode = InsertionMode.Replace,UpdateTargetId = "detalle"})</td>
+    </tr>
+}
+
+</table>
+<p>Detalle de autos</p>
+<div id="detalle"></div>

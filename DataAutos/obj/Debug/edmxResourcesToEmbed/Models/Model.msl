@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DataAutosModelStoreContainer" CdmEntityContainer="DataAutosEntities">
+    <EntitySetMapping Name="Auto">
+      <EntityTypeMapping TypeName="DataAutosModel.Auto">
+        <MappingFragment StoreEntitySet="Auto">
+          <ScalarProperty Name="aut_id" ColumnName="aut_id" />
+          <ScalarProperty Name="per_id" ColumnName="per_id" />
+          <ScalarProperty Name="aut_placa" ColumnName="aut_placa" />
+          <ScalarProperty Name="aut_modelo" ColumnName="aut_modelo" />
+          <ScalarProperty Name="aut_color" ColumnName="aut_color" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Persona">
+      <EntityTypeMapping TypeName="DataAutosModel.Persona">
+        <MappingFragment StoreEntitySet="Persona">
+          <ScalarProperty Name="per_id" ColumnName="per_id" />
+          <ScalarProperty Name="per_nombre" ColumnName="per_nombre" />
+          <ScalarProperty Name="per_edad" ColumnName="per_edad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

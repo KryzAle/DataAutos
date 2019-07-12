@@ -1,0 +1,32 @@
+﻿@model List<DataAutos.Models.Auto>
+
+<table class="table">
+	<tr>
+		<th>
+			Modelo
+		</th>
+		<th>
+			Placa
+		</th>
+		<th>
+			Color
+		</th>
+		<th></th>
+	</tr>
+
+	@foreach (var item in Model)
+	{
+	<tr>
+		<td>
+			@Html.DisplayFor(modelItem => item.aut_modelo)
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.aut_placa)
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.aut_color)
+		</td>
+	</tr>
+	}
+
+</table>
